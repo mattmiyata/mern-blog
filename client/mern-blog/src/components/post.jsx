@@ -14,7 +14,10 @@ export default function Post({
     <Link to={`/post/${_id}`}>
       <div className="entry">
         <div>
-          <img src={"http://localhost:4000/" + cover} alt="" />
+          <img
+            src={"https://mern-blogger-eb273b6050cf.herokuapp.com/" + cover}
+            alt=""
+          />
         </div>
         <div className="text">
           <h2> {title} </h2>

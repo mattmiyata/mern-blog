@@ -19,7 +19,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:5173" })); // set co
 app.use(express.json()); // express middleware to parse JSON
 app.use(cookieParser()); // middleware to parse cookies
 app.use("/uploads", express.static(__dirname + "/uploads")); // set static files to upload folder
-app.use("/public", express.static(__dirname + "/public"));
+app.use(express.static("public"));
 const port = process.env.PORT || 4000;
 //bcrypt
 const saltRounds = 10;
@@ -69,7 +69,7 @@ const catchAsync = (fn) => {
 
 // registration catch from RegisterPage
 app.post(
-  "/register",
+  "/api/register",
   catchAsync(async (req, res, next) => {
     const { username, password } = req.body;
     //checks if user input password and username
@@ -100,7 +100,7 @@ app.post(
 
 // login catch from LoginPage
 app.post(
-  "/login",
+  "/api/login",
   catchAsync(async (req, res, next) => {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -130,7 +130,7 @@ app.post(
 ////////////////////////////////////////////////////////
 
 // checks webtoken from header.jsx to check if signed in
-app.get("/profile", (req, res) => {
+app.get("/api/profile", (req, res) => {
   const { token } = req.cookies;
   if (!token) {
     return;
@@ -149,7 +149,7 @@ app.get("/profile", (req, res) => {
 ///////////////////////////////////////////////////////////////
 //Logout
 // sets token to "" when logged out
-app.post("/logout", (req, res) => {
+app.post("/api/logout", (req, res) => {
   res.status(200).cookie("token", "").json("ok");
 });
 
@@ -159,7 +159,7 @@ app.post("/logout", (req, res) => {
 // post catcher from CreatePost.jsx
 // uploads image to uploads folder (multer)
 app.post(
-  "/post",
+  "/api/post",
   upload.single("file"),
   catchAsync(async (req, res, next) => {
     //checks to see if image was uploaded and renames path so PostPage can reference image,  otherwise remains 'null'
@@ -197,7 +197,7 @@ app.post(
 
 // put catcher from EditPost.jsx
 app.put(
-  "/post",
+  "/api/post",
   upload.single("file"),
   catchAsync(async (req, res, next) => {
     let newPath = null;
@@ -240,7 +240,7 @@ app.put(
 
 // delete request from PostPage by author
 app.delete(
-  "/post/:id",
+  "/api/post/:id",
   catchAsync(async (req, res, next) => {
     const { token } = req.cookies;
     const { id } = req.params;
@@ -277,7 +277,7 @@ app.delete(
 
 // get request from IndexPage.jsx to populate page
 app.get(
-  "/post",
+  "/api/post",
   catchAsync(async (req, res, next) => {
     const posts = await Post.find()
       .populate("author", ["username"])
@@ -290,7 +290,7 @@ app.get(
 
 // get request from PostPage to show full post when selected
 app.get(
-  "/post/:id",
+  "/api/post/:id",
   catchAsync(async (req, res) => {
     const { id } = req.params;
 

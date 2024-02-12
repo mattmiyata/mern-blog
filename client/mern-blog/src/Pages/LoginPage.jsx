@@ -12,12 +12,15 @@ export default function LoginPage() {
   // sends post request upon login
   async function login(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:4000/login", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-type": "application/json" },
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://mern-blogger-eb273b6050cf.herokuapp.com/api/login",
+      {
+        method: "POST",
+        body: JSON.stringify({ username, password }),
+        headers: { "Content-type": "application/json" },
+        credentials: "include",
+      }
+    );
     //  sets user info
     if (response.ok) {
       response.json().then((userInfo) => {

@@ -10,7 +10,7 @@ export default function Header() {
 
   //checks to see if logged in
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
+    fetch("https://mern-blogger-eb273b6050cf.herokuapp.com/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -26,7 +26,7 @@ export default function Header() {
 
   // sets userInfo to null when logged out
   function logout() {
-    fetch("http://localhost:4000/logout", {
+    fetch("https://mern-blogger-eb273b6050cf.herokuapp.com/api/logout", {
       credentials: "include",
       method: "POST",
     });

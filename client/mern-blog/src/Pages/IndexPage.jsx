@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 export default function IndexPage() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:4000/post").then((response) => {
-      response.json().then((posts) => {
-        setPosts(posts);
-        //console.log(posts);
-      });
-    });
+    fetch("https://mern-blogger-eb273b6050cf.herokuapp.com/api/post").then(
+      (response) => {
+        response.json().then((posts) => {
+          setPosts(posts);
+          //console.log(posts);
+        });
+      }
+    );
   }, []);
   return (
     <div className="homePage-container">

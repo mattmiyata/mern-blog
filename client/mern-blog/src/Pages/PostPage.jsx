@@ -13,12 +13,14 @@ export default function PostPage() {
 
   // called on render to fetch post data from database and sets to state
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`).then((response) => {
+    fetch(
+      `https://mern-blogger-eb273b6050cf.herokuapp.com/api/post/${id}`
+    ).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
       });
     });
-  }, [id]);
+  }, []);
 
   // called on delete and sends id and token
   async function deletePost() {
@@ -26,10 +28,13 @@ export default function PostPage() {
     data.set("id", id);
     // e.preventDefault();
 
-    const response = await fetch(`http://localhost:4000/post/${id}`, {
-      method: "DELETE",
-      credentials: "include",
-    });
+    const response = await fetch(
+      `https://mern-blogger-eb273b6050cf.herokuapp.com/api/post/${id}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+      }
+    );
     // used to redirect after delete
     if (response.ok) {
       setPostDeleted(true);
@@ -113,7 +118,10 @@ export default function PostPage() {
       )}
       {/* sets image */}
       <div className="image">
-        <img src={`http://localhost:4000/${postInfo.cover}`} alt="" />
+        <img
+          src={`https://mern-blogger-eb273b6050cf.herokuapp.com/${postInfo.cover}`}
+          alt=""
+        />
       </div>
       {/* sets content */}
       <div

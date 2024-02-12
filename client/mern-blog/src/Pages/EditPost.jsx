@@ -14,13 +14,15 @@ export default function EditPost() {
   const [error, setError] = useState("");
   // fetches data to populate input fields
   useEffect(() => {
-    fetch("http://localhost:4000/post/" + id).then((response) => {
-      response.json().then((postInfo) => {
-        setTitle(postInfo.title);
-        setContent(postInfo.content);
-        setSummary(postInfo.summary);
-      });
-    });
+    fetch("https://mern-blogger-eb273b6050cf.herokuapp.com/post/" + id).then(
+      (response) => {
+        response.json().then((postInfo) => {
+          setTitle(postInfo.title);
+          setContent(postInfo.content);
+          setSummary(postInfo.summary);
+        });
+      }
+    );
   }, [id]);
   // sets data and sends data to be saved in database
   async function editPost(e) {
@@ -34,11 +36,14 @@ export default function EditPost() {
     }
     e.preventDefault();
 
-    const response = await fetch("http://localhost:4000/post", {
-      method: "PUT",
-      body: data,
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://mern-blogger-eb273b6050cf.herokuapp.com/api/post",
+      {
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }
+    );
     if (response.ok) {
       setRedirect(true);
     } else {

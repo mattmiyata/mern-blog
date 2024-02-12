@@ -12,12 +12,15 @@ export default function RegisterPage() {
   async function register(e) {
     e.preventDefault();
     // post request to server
-    const response = await fetch("http://localhost:4000/register", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-type": "application/json" },
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://mern-blogger-eb273b6050cf.herokuapp.com/api/register",
+      {
+        method: "POST",
+        body: JSON.stringify({ username, password }),
+        headers: { "Content-type": "application/json" },
+        credentials: "include",
+      }
+    );
     if (response.ok) {
       response.json().then((userInfo) => {
         setRedirect(true);
