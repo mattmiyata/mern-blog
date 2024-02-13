@@ -46,9 +46,12 @@ header {
   background-color: rgb(189, 159, 236);
   width: 100%;
 }
+header h2 {
+  font-size: 1rem;
+}
 
 header a {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
@@ -62,7 +65,7 @@ ReactQuill {
 header a.logo {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 2rem;
   align-content: center;
   display: flex;
   align-items: center;

@@ -52,7 +52,7 @@ export default function Header() {
         {username && (
           <>
             <h2>Welcome back, {username}</h2>
-            <Link to="/createpost">Create new post</Link>
+            <Link to="/createpost">Create Post</Link>
             <a onClick={logout}>Logout</a>
           </>
         )}
