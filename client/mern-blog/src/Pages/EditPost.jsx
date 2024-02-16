@@ -57,7 +57,7 @@ export default function EditPost() {
     return <Navigate to={"/post/" + id} />;
   }
   return (
-    <form onSubmit={editPost}>
+    <form onSubmit={editPost} className="edit">
       <input
         required
         type="title"
