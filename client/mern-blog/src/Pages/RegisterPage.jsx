@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Navigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
 export default function RegisterPage() {

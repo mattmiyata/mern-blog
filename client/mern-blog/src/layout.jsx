@@ -12,7 +12,3 @@ export default function Layout() {
     </main>
   );
 }
-
-function Loading() {
-  return <h2>Loading</h2>;
-}
